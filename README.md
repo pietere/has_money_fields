@@ -68,4 +68,6 @@ class Product < ActiveRecord::Base
 end
 ```
 
+# TODO
 
+ * Make dirty attributes and validations work
