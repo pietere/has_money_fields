@@ -5,7 +5,7 @@ ActiveRecord::Schema.define(:version => 1) do
 
     t.integer :money_price_in_usd, :default => 0
 
-    t.string :name, :null => false
+    t.string :name
   end
 end
 

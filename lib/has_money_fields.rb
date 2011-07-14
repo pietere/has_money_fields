@@ -9,10 +9,6 @@ module HasMoneyFields
       options.assert_valid_keys(:only_cents)
 
       args.each do |attr|
-        constructor = Proc.new do |cents, currency|
-          Money.new(cents || 0, currency || Money.default_currency)
-        end
-
         converter = Proc.new do |value|
           if value.respond_to? :to_money
             value.to_money
@@ -30,8 +26,10 @@ module HasMoneyFields
         self.composed_of attr,
           :class_name => "Money",
           :mapping => mapping,
-          :constructor => constructor,
-          :converter => converter
+          :constructor => :new,
+          :converter => converter,
+          :allow_nil => true
+
       end
     end
   end
