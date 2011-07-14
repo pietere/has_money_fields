@@ -71,6 +71,7 @@ end
 ## Validations
 
 You can use ActiveRecord validations, as the following example:
+
 ```ruby
 class Product < ActiveRecord::Base
   has_money_fields :price
