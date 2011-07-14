@@ -68,6 +68,20 @@ class Product < ActiveRecord::Base
 end
 ```
 
+## Validations
+
+You can use ActiveRecord validations, as the following example:
+```ruby
+class Product < ActiveRecord::Base
+  has_money_fields :price
+  validates :price, :presence => true
+end
+
+product = Product.new :price => nil
+product.save # => false
+product.valid? # => false
+```
+
 # TODO
 
- * Make dirty attributes and validations work
+ * Make dirty attributes work
