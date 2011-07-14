@@ -56,7 +56,7 @@ p = Product.new :price => Money.new(1000, "EUR"), :name => "T-shirt"
 p.price # => #<Money cents:1000 currency:EUR>
 p.price.format # => "10.00 €"
 p.price.cents # => 1000
-p.price.currency_as_string => "€"
+p.price.currency_as_string # => "€"
 ```
 
 To use the default currency from the money gem, you'd rather drop the
