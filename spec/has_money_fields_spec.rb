@@ -45,9 +45,8 @@ describe "Model with money fields" do
     end
     subject {@product}
 
-    its(:money_price){ should 1000 }
-    its(:currency_price){ should "USD" }
-    its(:money_price_in_usd) { should 1000 }
+    its(:money_price){ should == 100000 }
+    its(:currency_price){ should == "USD" }    
   end
 
   context "with validations" do
