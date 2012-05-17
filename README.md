@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/Zorros/has_money_fields.png?branch=master)](http://travis-ci.org/Zorros/has_money_fields)
+
 # Introduction
 
 `has_money_fields` is a try to DRY the following code from the Money gem

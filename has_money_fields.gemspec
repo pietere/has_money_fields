@@ -26,7 +26,6 @@ currency data in a safe and clean way.
   s.add_dependency "money"
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec", "~> 2"
-  s.add_development_dependency "ruby-debug19"
   s.add_development_dependency "guard"
   s.add_development_dependency "guard-rspec"
 end
