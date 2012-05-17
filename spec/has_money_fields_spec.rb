@@ -39,6 +39,17 @@ describe "Model with money fields" do
     its(:money_price_in_usd) { should be_nil }
   end
 
+  context "with price combining text and numbers" do
+    before do
+      @product = Product.create! :price => "$1000 + VAT"
+    end
+    subject {@product}
+
+    its(:money_price){ should 1000 }
+    its(:currency_price){ should "USD" }
+    its(:money_price_in_usd) { should 1000 }
+  end
+
   context "with validations" do
     before do
       Product.class_eval do
