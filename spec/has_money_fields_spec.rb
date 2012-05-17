@@ -49,6 +49,15 @@ describe "Model with money fields" do
     its(:currency_price){ should == "USD" }    
   end
 
+  context "with number only prices" do
+    before do
+      @product = Product.create! :price => 1000 
+    end
+    subject {@product}
+
+    its(:money_price){ should == 100000 }       
+  end
+
   context "with validations" do
     before do
       Product.class_eval do
