@@ -1,4 +1,4 @@
-require "spec/spec_helper"
+require "spec_helper"
 
 describe "Model with money fields" do
   context "for cents and currency" do

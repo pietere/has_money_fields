@@ -8,5 +8,5 @@ ActiveRecord::Base.establish_connection({
   :database => ":memory:",
 })
 
-require 'lib/has_money_fields'
-require 'spec/models'
+require 'has_money_fields'
+require 'models'
