@@ -10,6 +10,8 @@ module HasMoneyFields
 
       args.each do |attr|
         converter = Proc.new do |value|
+          # remove all non digit and period characters from the price
+          value.gsub! /[^\.|\d]/, ""
           if value.respond_to? :to_money
             value.to_money
           else
@@ -29,7 +31,6 @@ module HasMoneyFields
           :constructor => :new,
           :converter => converter,
           :allow_nil => true
-
       end
     end
   end
