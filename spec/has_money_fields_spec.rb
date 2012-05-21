@@ -46,8 +46,29 @@ describe "Model with money fields" do
     subject {@product}
 
     its(:money_price){ should == 100000 }
-    its(:currency_price){ should == "USD" }    
+    its(:currency_price){ should == "USD" }        
   end
+  
+  context "with price with commas" do
+    before do
+      @product = Product.create! :price => "$1000,50 + VAT"
+    end
+    subject {@product}
+
+    its(:money_price){ should == 100050 }
+    its(:currency_price){ should == "USD" }        
+  end
+  
+  context "with price with periods" do
+    before do
+      @product = Product.create! :price => "$1000.50 + VAT"
+    end
+    subject {@product}
+
+    its(:money_price){ should == 100050 }
+    its(:currency_price){ should == "USD" }        
+  end
+  
 
   context "with number only prices" do
     before do
