@@ -46,9 +46,9 @@ describe "Model with money fields" do
     subject {@product}
 
     its(:money_price){ should == 100000 }
-    its(:currency_price){ should == "USD" }        
+    its(:currency_price){ should == "USD" }
   end
-  
+
   context "with price with commas" do
     before do
       @product = Product.create! :price => "$1000,50 + VAT"
@@ -56,9 +56,9 @@ describe "Model with money fields" do
     subject {@product}
 
     its(:money_price){ should == 100050 }
-    its(:currency_price){ should == "USD" }        
+    its(:currency_price){ should == "USD" }
   end
-  
+
   context "with price with periods" do
     before do
       @product = Product.create! :price => "$1000.50 + VAT"
@@ -66,17 +66,27 @@ describe "Model with money fields" do
     subject {@product}
 
     its(:money_price){ should == 100050 }
-    its(:currency_price){ should == "USD" }        
+    its(:currency_price){ should == "USD" }
   end
-  
 
-  context "with number only prices" do
+  context "some test which includes periods" do
     before do
-      @product = Product.create! :price => 1000 
+      @product = Product.create! :price => "$1000.50 INCL."
     end
     subject {@product}
 
-    its(:money_price){ should == 100000 }       
+    its(:money_price){ should == 100050 }
+    its(:currency_price){ should == "USD" }
+  end
+
+
+  context "with number only prices" do
+    before do
+      @product = Product.create! :price => 1000
+    end
+    subject {@product}
+
+    its(:money_price){ should == 100000 }
   end
 
   context "with validations" do
@@ -85,7 +95,7 @@ describe "Model with money fields" do
         validates :price, :presence => true
       end
 
-      @product = Product.new :price => nil
+      @product = Product.new :price => ""
     end
 
     it "is invalid" do
