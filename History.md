@@ -1,5 +1,12 @@
 
-0.0.4 / 2012-05-17 
+0.1.0 / 2013-01-16
+==================
+
+  * Add constructor to avoid issues in some apps
+  * Tested in quite some production apps with good results, so we bump a major
+    version :)
+
+0.0.4 / 2012-05-17
 ==================
 
   * Fix error when using a Fixnum as argument
