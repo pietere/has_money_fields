@@ -11,12 +11,22 @@ module HasMoneyFields
       args.each do |attr|
         converter = Proc.new do |value|
           # remove all non digit characters from the price
-          value.gsub!(/[^\d|\.|\,]/, "") if value.instance_of? String
+          value.gsub!(/[^\d|\.|\,]/, "") if value.instance_of?(String)
+
           if value.respond_to? :to_money
             value.to_money
           else
             raise(ArgumentError, "Can't convert #{value.class} to Money")
           end
+        end
+
+        constructor = Proc.new do |cents, currency|
+
+          cents = cents.to_i if cents.instance_of?(String)
+
+          currency = Money.default_currency if currency.nil?
+
+          Money.new(cents, currency)
         end
 
         if options[:only_cents]
@@ -28,7 +38,7 @@ module HasMoneyFields
         self.composed_of attr,
           :class_name => "Money",
           :mapping => mapping,
-          :constructor => :new,
+          :constructor => constructor,
           :converter => converter,
           :allow_nil => true
 
