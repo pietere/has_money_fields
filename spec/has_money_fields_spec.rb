@@ -13,6 +13,16 @@ describe "Model with money fields" do
     its(:price) { should == Money.new(1000, "EUR") }
   end
 
+  context "for negative amounts" do
+    before do
+      @product = Product.create! :price => "-1000",
+        :name => "C/C++ T-shirt"
+    end
+    subject {@product}
+
+    its(:money_price) {should eq(-100000)}
+  end
+
   context "only for cents" do
     before do
       @product = Product.create! :price_in_usd => Money.new(1000),

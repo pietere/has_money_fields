@@ -11,7 +11,7 @@ module HasMoneyFields
       args.each do |attr|
         converter = Proc.new do |value|
           # remove all non digit characters from the price
-          value.gsub!(/[^\d|\.|\,]/, "") if value.instance_of?(String)
+          value.gsub!(/[^\d|\.|\,|-]/, "") if value.instance_of?(String)
 
           if value.respond_to? :to_money
             value.to_money
